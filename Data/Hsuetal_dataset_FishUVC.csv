@@ -1,4 +1,4 @@
-Reef,Habitat,Position,Site,Family,Genus,Species,Valid_as,Trophic_group,Feeding_group,TR,Density,Biomass
+Reef,Habitat,Position,Site,Family,Genus,Species,Valid_as,Trophic_group,Feeding_group,TR,Density_per100m2,Biomass_g_per100m2
 OCDA,FR,FR2S,OCDA_FR2S,Scaridae,Chlorurus,sordidus,Chlorurus sordidus,Herbivores,algal excavator,T1,0.219442616,184.6376769
 OCDA,FR,FR2S,OCDA_FR2S,Scaridae,Chlorurus,sordidus,Chlorurus sordidus,Herbivores,algal excavator,T2,5.018860282,303.8471408
 OCDA,FR,FR2S,OCDA_FR2S,Nemipteridae,Scolopsis,bilineata,Scolopsis bilineata,Benthic feeders,motile benthos feeder,T1,1.316655695,733.0706489

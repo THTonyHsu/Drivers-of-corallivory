@@ -20,7 +20,7 @@
 #' 
 #' **Publication**: Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (in press) Corallivore assemblage, feeding behaviour, and *Acropora* corals drive fish corallivory on tropical reefs. *Ecosphere*. [doi](doi)
 #' 
-#' **Data**: Hsu T-H.T, Hoey A.S, Warren C.R, Marrable I, Figueira W.F (2026) Data from “Corallivore assemblage, feeding behaviour, and *Acropora* corals drive fish corallivory on tropical reefs.”. \[Data set\]. Sydney eScholarship, [doi](doi)
+#' **Data**: Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (2026) Data from "Corallivore assemblage, feeding behaviour, and *Acropora* corals drive fish corallivory on tropical reefs.". \[Data set\]. Sydney eScholarship, [doi](doi)
 #' 
 #' Data and **R script** also available on [GitHub](https://github.com/THTonyHsu/Drivers-of-corallivory.git)
 #' 
@@ -78,6 +78,7 @@ Fishcomm = read.csv("Data/Hsuetal_dataset_FishUVC.csv")
 #' ### Create a summary table
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
+options(width = 150)
 CF_smry = df_cor[, 1:5] %>% unique()
 row.names(CF_smry) = NULL
 CF_smry$Habitat = as.factor(CF_smry$Habitat)
@@ -116,7 +117,7 @@ df_event = df_cor %>% filter(Activity == "Feeding") %>%
   summarise(Bite = n()) %>% left_join(df_event, .) %>% na.omit() %>% 
   mutate(Bite_rate = Bite/Event_duration)
 
-# Assemblage corallivory (Corallivorous bites by species across plots)
+# Assemblage-level corallivory (Corallivorous bites by species across plots)
 CF_sp = df_cor %>% filter(Activity == "Feeding") %>% left_join(., Ben_food) %>% na.omit() %>% 
   group_by(Reef, Site, Habitat, Position, Plot, SN) %>% 
   summarise(Bite = n()) %>% 
@@ -129,10 +130,10 @@ CF_sp = cbind(data.frame(Region = ifelse(CF_sp$Reef == "TSMA", "TS", "GBR")), CF
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-Fishcomm = Fishcomm[is.na(Fishcomm$Biomass)*-1,]
+Fishcomm = Fishcomm[is.na(Fishcomm$Biomass_g_per100m2)*-1,]
 ## Fish trophic groups
 FishTG = Fishcomm %>% group_by(Reef, Habitat, Position, Site, TR, Trophic_group) %>% 
-  summarise(Biomass = sum(Biomass), Density = sum(Density))
+  summarise(Biomass = sum(Biomass_g_per100m2), Density = sum(Density_per100m2))
 
 #' 
 #' ### Benthic communities
@@ -211,7 +212,7 @@ CF_smry$Richness_Corallivores = df_cor[,c("Reef", "Site", "Plot", "SN")] %>% uni
 
 CF_smry$Biomass_Corallivores = Fishcomm %>% filter(Valid_as %in% ObCor$Valid_as) %>% 
   group_by(Reef, Site, TR, Trophic_group) %>% 
-  summarise(Biomass = sum(Biomass)) %>% 
+  summarise(Biomass = sum(Biomass_g_per100m2)) %>% 
   pivot_wider(id_cols = c(Reef, Site, TR), 
               names_from = Trophic_group, values_from = Biomass, values_fill = 0) %>% 
   mutate(Biomass_Corallivores = Corallivores) %>% left_join(CF_smry[,1:7], .) %>% 
@@ -249,7 +250,7 @@ CF_smry = CF_smry %>% mutate(Acropora.arb = Ben_com$Acro.arb,
 
 
 #' 
-#' ### Scale summary tables
+#' ### Scale summary ts
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
@@ -350,13 +351,13 @@ shapiro.test(resid(mod))
 emmeans(mod, list(pairwise ~ Reef), adjust = "tukey")
 
 #' 
-#' ### Spatial variation in assemblage corallivory and benthic communities
+#' ### Spatial variation in assemblage-level corallivory and benthic communities
 #' 
-#' #### Assemblage corallivory
+#' #### Assemblage-level corallivory
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-# nMDS of Assemblage corallivory (corallivorous bites by species)]
+# nMDS of Assemblage-level corallivory (corallivorous bites by species)]
 nmds_bite_sp = metaMDS(as.data.frame(CF_sp[,-c(1:6)]), distance='bray',trymax=999)
 
 # extract data from nMDS for plotting
@@ -370,12 +371,12 @@ sps_bite_sp = left_join(sps_bite_sp,ObCor[,4:5])
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-# PERMANOVA on assemblage corallivory
+# PERMANOVA on assemblage-level corallivory
 PERM_C = adonis2(CF_sp[,-c(1:6)]~ Reef*Habitat, data = CF_sp, 
                  permutations = 999, method="bray", by = "terms")
 PERM_C
 
-# pairwise PERMANOVA on assemblage corallivory
+# pairwise PERMANOVA on assemblage-level corallivory
 CF_sp_RxH = CF_sp
 CF_sp_RxH$Reef_Habitat = interaction(CF_sp_RxH$Reef, CF_sp_RxH$Habitat)
 CF_sp_RxH = CF_sp_RxH[, c(18, 1:17)]
@@ -383,7 +384,7 @@ pairwise.adonis2(CF_sp_RxH[,-c(1:7)] ~ Reef_Habitat,
                  method="bray", p.adjust.method = "bonferroni", nperm = 999, data = CF_sp_RxH)
 # Higher bites at back than front sites only at Heron
 
-# Similarity Percentages analysis on assemblage corallivory
+# Similarity Percentages analysis on assemblage-level corallivory
 simper_c = simper(comm = CF_sp_RxH[,-(1:7)], group = CF_sp_RxH$Reef_Habitat) %>% 
   summary()
 # Heron: Back vs Fore
@@ -434,11 +435,10 @@ simper_b$ONLI.BA_ONLI.FR
 simper_b$TSMA.BA_TSMA.FR
 
 #' 
-#' #### Table S2: benthic composition among GBR and TS sites
+#' #### Table S3: Benthic composition between back- and fore-reef habitats among reefs
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-#| warning: false
 # Function to compute mean and SE together
 calc_mean_se = function(x) {
   mean_val = round(mean(x), 2)
@@ -446,6 +446,35 @@ calc_mean_se = function(x) {
   paste0(mean_val, " \u00B1 ", se_val)
 }
 
+TableS3 = Ben_com %>%
+  group_by(Region, Reef, Habitat) %>%
+  summarise(
+    across(c(Acro.arb:alg.ca), .fns = calc_mean_se)) %>%
+  as.data.frame()
+
+# Transpose and adjust column names
+TableS3 = t(TableS3[,-(1:3)]) %>% as.data.frame()
+
+TableS3 = rbind(
+t(data.frame(
+  Region = rep(c("GBR", "TS"), times = c(6,2)),
+  Reef = rep(c("Heron", "Davies", "Lizard", "Masig"), each = 2),
+  Habitat = rep(c("Back", "Fore"), 4)
+)),
+TableS3) %>% rownames_to_column(var = "MFG")
+TableS3 = TableS3[-1,]
+require(DT)
+
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+datatable(TableS3, options = list(scrollX = TRUE))
+
+#' 
+#' #### Table S4: Benthic composition among GBR and TS sites
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+#| output: false
+#| warning: false
 # Compute mean ± SE in one step
 Ben_R = Ben_com %>%
   group_by(Region) %>%
@@ -464,17 +493,16 @@ Ben_R_Wt = apply(Ben_com[,-c(1:6)], MARGIN = 2, FUN = function(x)(wilcox.test(x 
 Ben_R_Wt$Benthos = rownames(Ben_R_Wt)
 colnames(Ben_R_Wt)[1] = "Significance"
 
-TableS2 = left_join(Ben_R, Ben_R_Wt)
-rownames(TableS2) = TableS2$Benthos
-TableS2 = TableS2[,-3]
-TableS2$Significance = ifelse(TableS2$Significance>0.05, "NS", 
-                              ifelse(TableS2$Significance>0.01, "*",
-                                     ifelse(TableS2$Significance>0.001, "**", "***")))
-require(DT)
+TableS4 = left_join(Ben_R, Ben_R_Wt)
+rownames(TableS4) = TableS4$Benthos
+TableS4 = TableS4[,-3]
+TableS4$Significance = ifelse(TableS4$Significance>0.05, "NS", 
+                              ifelse(TableS4$Significance>0.01, "*",
+                                     ifelse(TableS4$Significance>0.001, "**", "***")))
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-datatable(TableS2, options = list(scrollX = TRUE))
+datatable(TableS4, options = list(scrollX = TRUE))
 
 #' 
 #' ### Drivers of corallivory within regions
@@ -978,7 +1006,6 @@ hist(resid(lm_rugosity_TS), breaks = 20, main = NULL)
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-options(width = 150)
 SEM_GBR = psem(
   lm_total_corallivory_GBR,
   lm_Feeding_intensity_GBR,
@@ -1209,6 +1236,7 @@ Fig2_5 = ggdraw() +
 #| fig-align: "center"
 #| warning: false
 plot_grid(Fig2_1, Fig2_2, Fig2_3, Fig2_4, Fig2_5, ncol = 1, nrow = 5)
+ggsave("Plot/Fig2.png", width = 8, height = 13, units = "in", dpi = 600, bg = "white")
 
 #' 
 #' ### Figure 3
@@ -1248,6 +1276,7 @@ Fig3 = ggplot(df_nmds_bite_sp, aes(x = NMDS1, y = NMDS2))+
 #| fig-align: "center"
 #| warning: false
 Fig3
+ggsave("Plot/Fig3.png", width = 10, height = 6, units = "in", dpi = 600, bg = "white")
 
 #' 
 #' ### Figure 4
@@ -1288,6 +1317,7 @@ Fig4 = ggplot(df_nmds_ben, aes(x = NMDS1, y = NMDS2))+
 #| fig-align: "center"
 #| warning: false
 Fig4
+ggsave("Plot/Fig4.png", width = 10, height = 6, units = "in", dpi = 600, bg = "white")
 
 #' 
 #' ### Figure 5
@@ -1303,7 +1333,7 @@ var_list = data.frame(
   lab = c("Total corallivory", "Feeding intensity", "Event duration", 
           "Corallivore richness", "Corallivore biomass",
           "Piscivore biomass", "Rugosity", "Tabular Acropora",
-          "Corymbose Acropora", "Arborescent Acropora", "Montipora", "Pocillopora", 
+          "Corymbose Acropora", "Arborescent Acropora", "Montipora", "Pocillopora",
           "Massive Porites")
 )
 # Extract outputs of SEM_GBR
@@ -1469,6 +1499,28 @@ ResV = ResV[-9] # no predictor for lm_Feeding_intensity_TS
 # Initialize the master list
 plot_ME = vector("list", length = length(allLM))
 
+c("Total corallivory", "Feeding intensity", "Event duration", 
+          "Corallivore richness", "Corallivore biomass",
+          "Piscivore biomass", "Rugosity", "Tabular Acropora",
+          "Corymbose Acropora", "Arborescent Acropora", "Montipora", "Pocillopora",
+          "Massive Porites")
+
+axis_title = list(
+  Total_corallivory = expression(Total~corallivory~(bites~30~min^{-1})),
+  Feeding_intensity = expression(Feeding~intensity~(bites~min^{-1})),
+  Event_duration = expression(Event~duration~(min)),
+  Richness_Corallivores = expression(Corallivore~richness),
+  Biomass_Corallivores = expression(Corallivore~biomass~(g~m^{-2})),
+  Biomass_Piscivores = expression(Piscivore~biomass~(kg~m^{-2})),
+  Rugosity = expression(Rugosity),
+  Acropora.tab = expression(tabular~italic(Acropora)~("%")),
+  Acropora.cory = expression(corymbose~italic(Acropora)~("%")),
+  Acropora.arb = expression(arborescent~italic(Acropora)~("%")),
+  Montipora = expression(italic(Montipora)~("%")),
+  Pocillopora = expression(italic(Pocillopora)~("%")),
+  Porites.mas = expression(massive~italic(Porites)~("%"))
+)
+
 # Helper function to handle back-transformations by variable name
 back_transform = function(x, var_name, stats_df, Region) {
   mu = stats_df[stats_df$var == var_name & stats_df$region == Region, "Mean"]
@@ -1523,8 +1575,8 @@ for (n in seq_along(allLM)) {
     # Map variable names for plotting
     raw_x = var_list$var[var_list$var == pred_var]
     raw_y = var_list$var[var_list$var == resp_var]
-    lab_x = var_list$lab[var_list$var == pred_var]
-    lab_y = var_list$lab[var_list$var == resp_var]
+    lab_x = axis_title[[pred_var]]
+    lab_y = axis_title[[resp_var]]
     
 
     # Build the BASE plot (Points, Theme, Labels)
@@ -1556,11 +1608,10 @@ for (n in seq_along(allLM)) {
 #| fig-align: "center"
 #| warning: false
 plot_grid(plotlist = unlist(plot_ME[1:7], recursive = FALSE), ncol = 6)
+ggsave("Plot/FigS1.png", width = 12, height = 8, units = "in", dpi = 600, bg = "white")
 
 #' 
 #' #### Figure S2
-#' 
-#' plot_grid(plotlist = unlist(plot_ME\[8:14\], recursive = FALSE), ncol = 4)
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| fig-width: 8
@@ -1568,6 +1619,58 @@ plot_grid(plotlist = unlist(plot_ME[1:7], recursive = FALSE), ncol = 6)
 #| fig-align: "center"
 #| warning: false
 plot_grid(plotlist = unlist(plot_ME[8:14], recursive = FALSE), ncol = 4)
+ggsave("Plot/FigS2.png", width = 8, height = 6, units = "in", dpi = 600, bg = "white")
+
+#' 
+#' ### Biomass of corallivores \~ coral cover
+#' 
+#' #### Figure S3
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+#| output: false
+
+# Total hard coral cover
+CF_smry$HardCoralCover = Ben_MFG %>% ungroup() %>% select(
+  Acro.arb, Acro.bran, Acro.cory, Acro.tab, Fire.coral, Foliose.lett, Foliose.plat,
+  Freeliving, HC.other.bran, HC.other.mas, Montipora, Pocillopora, Porites.mas, Stylophora
+) %>% rowSums()
+
+# Total cover pf the major six coral prey
+CF_smry = CF_smry %>% mutate(
+  M6prey = rowSums(pick(`Acropora.arb`:`Pocillopora`), na.rm = TRUE)
+)
+
+CF_smry_site = CF_smry %>% group_by(Region, Reef, Site, TR) %>% summarise(across(where(is.numeric), mean))
+
+require(ggpmisc)
+
+FigS3a = ggplot(CF_smry_site, aes(x = HardCoralCover, y = Biomass_Corallivores))+
+  theme_minimal()+
+  geom_point()+
+  geom_smooth(method = "lm", fill = "#92c5de", col = "black", linewidth = 0.65)+
+  stat_poly_eq(formula = y ~ x,
+               use_label(c("R2", "p")), small.p = TRUE)+
+  labs(x = "Hard coral cover (%)", y = expression("Biomass of corallivores (g "~m^{-2}*")"))
+
+FigS3b = 
+ggplot(CF_smry_site, aes(x = M6prey, y = Biomass_Corallivores))+
+  theme_minimal()+
+  geom_point()+
+  geom_smooth(method = "lm", fill = "#92c5de", col = "black", linewidth = 0.65)+
+  stat_poly_eq(formula = y ~ x,
+               use_label(c("R2", "p")), small.p = TRUE)+
+  labs(x = "Cover of six major coral prey (%)", y = expression("Biomass of corallivores (g "~m^{-2}*")"))
+
+FigS3 = plot_grid(FigS3a, FigS3b, labels = c("(a)", "(b)"))
+
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+#| fig-width: 8
+#| fig-height: 4
+#| fig-align: "center"
+#| warning: false
+FigS3
+ggsave("Plot/FigS3.png", units = "in", width = 8, height = 4, dpi = 600, bg = "white")
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
