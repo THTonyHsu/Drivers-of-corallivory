@@ -6,11 +6,11 @@ author:
 date: "`r format(Sys.Date(), '%d %B %Y')`"
 format: 
   html:
+    embed-resources: true
     toc: true
     toc-depth: 4
     number-sections: true
     toc-location: left
-    embed-resources: true
 editor: visual
 ---
 

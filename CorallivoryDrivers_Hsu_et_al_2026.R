@@ -6,11 +6,11 @@
 #' date: "`r format(Sys.Date(), '%d %B %Y')`"
 #' format: 
 #'   html:
+#'     embed-resources: true
 #'     toc: true
 #'     toc-depth: 4
 #'     number-sections: true
 #'     toc-location: left
-#'     embed-resources: true
 #' editor: visual
 #' ---
 #' 
@@ -59,7 +59,7 @@ ObCor = read.csv("Data/Hsuetal_dataset_Obligate_corallivore.csv")
 # Benthic communities: 72 taxa
 Ben_cov = read.csv("Data/Hsuetal_dataset_benthic_taxa.csv")
 
-# Taxa to morpho-functional groups (MFGs)
+# Taxa to morpho-taxonomic groups (MFGs)
 Taxa_MFG = read.csv("Data/Hsuetal_dataset_benthic_MFG.csv")
 
 # Reference list for classifying prey items into MFG
@@ -148,7 +148,7 @@ Ben_MFG = pivot_longer(Ben_cov, cols = Acropora.Arborescent.Staghorn:Zoanthid, n
   select(-c(oth.mob, oth.ben, Abiotic, UnID)) # remove other taxa, unidentified, and abiotoc
 
 # Only keep abundant MFG with a max >5%
-MFG15 = colnames(Ben_MFG[,-(1:6)])[apply(Ben_MFG[,-(1:6)], 2, max)>5] # 15 morpho-functional groups
+MFG15 = colnames(Ben_MFG[,-(1:6)])[apply(Ben_MFG[,-(1:6)], 2, max)>5] # 15 morpho-taxonomic groups
 Ben_com = cbind(Ben_MFG[,1:6], Ben_MFG[,MFG15])
 
 #' 
@@ -462,7 +462,7 @@ t(data.frame(
   Habitat = rep(c("Back", "Fore"), 4)
 )),
 TableS3) %>% rownames_to_column(var = "MFG")
-TableS3 = TableS3[-1,]
+colnames(TableS3) = NULL
 require(DT)
 
 #' 
