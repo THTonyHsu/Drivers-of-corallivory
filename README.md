@@ -18,7 +18,7 @@ This README.md file was generated on 14 Apr 2026 by **Tsai-Hsuan Tony Hsu** ([ts
 
 4.  **Funding sources that supported the collection of the data**: This research was supported by the Reef Restoration and Adaptation Program, which is funded by a partnership between the Australian Government, Reef Trust, the Great Barrier Reef Foundation, and The Australian Institute of Marine Science, and by the Taiwan–University of Sydney Jointly Funded PhD Scholarship (USYD and Ministry of Education, Taiwan) awarded to T.-H. T. Hsu. The research was conducted under the Great Barrier Reef Marine Park permit G21/44774.1.
 
-5.  **Recommended citation for this dataset:** Hsu T-H.T, Hoey A.S, Warren C.R, Marrable I, Figueira W.F (2026) Data from “Corallivore assemblage, feeding behaviour, and *Acropora* corals drive fish corallivory on tropical reefs.”. [Data set]. Sydney eScholarship. [doi](doi)
+5.  **Recommended citation for this dataset:** Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (2026) Data from “Corallivore assemblage, feeding behaviour, and *Acropora* corals drive fish corallivory on tropical reefs.”. [Data set]. Sydney eScholarship. [doi](doi)
 
 [Data and R script are also available through the GitHub repository <https://github.com/THTonyHsu/Drivers-of-corallivory.git> in order to replicate our analyses]
 

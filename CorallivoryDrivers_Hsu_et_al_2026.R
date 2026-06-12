@@ -11,6 +11,7 @@
 #'     toc-depth: 4
 #'     number-sections: true
 #'     toc-location: left
+#'     fontsize: "16px"
 #' editor: visual
 #' ---
 #' 
@@ -250,7 +251,7 @@ CF_smry = CF_smry %>% mutate(Acropora.arb = Ben_com$Acro.arb,
 
 
 #' 
-#' ### Scale summary ts
+#' ### Scale summary tables
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
@@ -467,7 +468,10 @@ require(DT)
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-datatable(TableS3, options = list(scrollX = TRUE))
+datatable(TableS3, rownames = F,
+          options = list(scrollX = T, 
+                         autoWidth = T, 
+                         paging = FALSE))
 
 #' 
 #' #### Table S4: Benthic composition among GBR and TS sites
@@ -502,12 +506,12 @@ TableS4$Significance = ifelse(TableS4$Significance>0.05, "NS",
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-datatable(TableS4, options = list(scrollX = TRUE))
+datatable(TableS4, rownames = F,
+          options = list(scrollX = T, 
+                         autoWidth = F))
 
 #' 
-#' ### Drivers of corallivory within regions
-#' 
-#' #### Optimizing LMs among GBR sites
+#' ### Drivers of corallivory among GBR sites
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
@@ -519,15 +523,37 @@ CF_smry_GBR_t$Biomass_Piscivores = as.vector(scale((CF_smry_GBR$Biomass_Piscivor
 #' #### GBR-LM1: total corallivory
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Total_corallivory ~  Feeding_intensity + Event_duration + 
-     Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + 
-     Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora + Porites.mas+ Rugosity, CF_smry_GBR_t) %>% vif()
+lm(Total_corallivory ~  
+     Feeding_intensity + 
+     Event_duration + 
+     Biomass_Corallivores + 
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora + 
+     Porites.mas+ 
+     Rugosity, CF_smry_GBR_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
 # LM model selection using AICc
-model_selection = glmulti(Total_corallivory ~ Feeding_intensity + Event_duration + Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora +Porites.mas+ Rugosity,
+model_selection = glmulti(Total_corallivory ~ 
+                            Feeding_intensity + 
+                            Event_duration + 
+                            Biomass_Corallivores + 
+                            Richness_Corallivores + 
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora +
+                            Porites.mas+ 
+                            Rugosity,
                           data = CF_smry_GBR_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -556,12 +582,32 @@ hist(resid(lm_total_corallivory_GBR), breaks = 20, main = NULL)
 #' #### GBR-LM2: feeding intensity
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Feeding_intensity ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora +Porites.mas + Rugosity, CF_smry_GBR_t) %>% vif()
+lm(Feeding_intensity ~ 
+     Biomass_Corallivores + 
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora +
+     Porites.mas + 
+     Rugosity, CF_smry_GBR_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Feeding_intensity ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora + Porites.mas + Rugosity,
+model_selection = glmulti(Feeding_intensity ~
+                            Biomass_Corallivores + 
+                            Richness_Corallivores +
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora + 
+                            Porites.mas + 
+                            Rugosity,
                           data = CF_smry_GBR_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -587,12 +633,32 @@ hist(resid(lm_Feeding_intensity_GBR), breaks = 20, main = NULL)
 #' #### GBR-LM3: event duration
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Event_duration ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora + Porites.mas + Rugosity, CF_smry_GBR_t) %>% vif()
+lm(Event_duration ~ 
+     Biomass_Corallivores + 
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora + 
+     Porites.mas + 
+     Rugosity, CF_smry_GBR_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Event_duration ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora + Porites.mas + Rugosity,
+model_selection = glmulti(Event_duration ~ 
+                            Biomass_Corallivores +
+                            Richness_Corallivores +
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora + 
+                            Porites.mas + 
+                            Rugosity,
                           data = CF_smry_GBR_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -618,77 +684,27 @@ hist(resid(lm_Event_duration_GBR), breaks = 20, main = NULL)
 #' #### GBR-LM4: richness of corallivores
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Richness_Corallivores ~ Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora +Porites.mas + Rugosity, CF_smry_GBR_t) %>% vif()
+lm(Richness_Corallivores ~ 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora +
+     Porites.mas + 
+     Rugosity, CF_smry_GBR_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Richness_Corallivores ~ Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora + Porites.mas + Rugosity,
-                          data = CF_smry_GBR_t,
-                          level = 1,               # only main effects
-                          method = "h",            # heuristic search
-                          crit = "aicc",           # use AICc!
-                          fitfunction = lm)        # for lm models
-
-#' 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------
-#| fig-width: 8
-#| fig-height: 4
-#| fig-align: "center"
-#| warning: false
-summary(model_selection)$bestmodel
-
-lm_Richness_Corallivores_GBR = lm(Richness_Corallivores ~ Acropora.cory + Acropora.arb + Montipora, CF_smry_GBR_t)
-summary(lm_Richness_Corallivores_GBR)
-
-shapiro.test(resid(lm_Richness_Corallivores_GBR))
-par(mfrow=c(1,2))
-qqnorm(resid(lm_Richness_Corallivores_GBR))
-qqline(resid(lm_Richness_Corallivores_GBR), col = "red")
-hist(resid(lm_Richness_Corallivores_GBR), breaks = 20, main = NULL)
-
-#' 
-#' #### GBR-LM5: biomass of corallivores
-#' 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Biomass_Corallivores ~ Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora + Porites.mas + Rugosity, CF_smry_GBR_t) %>% vif()
-
-#' 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------
-#| output: false
-model_selection = glmulti(Biomass_Corallivores ~ Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora + Porites.mas+ Rugosity,
-                          data = CF_smry_GBR_t,
-                          level = 1,               # only main effects
-                          method = "h",            # heuristic search
-                          crit = "aicc",           # use AICc!
-                          fitfunction = lm)        # for lm models
-
-#' 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------
-#| fig-width: 8
-#| fig-height: 4
-#| fig-align: "center"
-#| warning: false
-summary(model_selection)$bestmodel
-
-lm_Biomass_Corallivores_GBR = lm(Biomass_Corallivores ~ Acropora.tab + Acropora.arb, CF_smry_GBR_t)
-summary(lm_Biomass_Corallivores_GBR)
-shapiro.test(resid(lm_Biomass_Corallivores_GBR))
-par(mfrow=c(1,2))
-qqnorm(resid(lm_Biomass_Corallivores_GBR))
-qqline(resid(lm_Biomass_Corallivores_GBR), col = "red")
-hist(resid(lm_Biomass_Corallivores_GBR), breaks = 20, main = NULL)
-
-#' 
-#' #### GBR-LM6: biomass of piscivores
-#' 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Biomass_Piscivores ~ Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora + Porites.mas + Rugosity, CF_smry_GBR_t) %>% vif()
-
-#' 
-## ---------------------------------------------------------------------------------------------------------------------------------------------------
-#| output: false
-model_selection = glmulti(Biomass_Piscivores ~ Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora +Porites.mas+
+model_selection = glmulti(Richness_Corallivores ~
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora + 
+                            Porites.mas + 
                             Rugosity,
                           data = CF_smry_GBR_t,
                           level = 1,               # only main effects
@@ -704,7 +720,111 @@ model_selection = glmulti(Biomass_Piscivores ~ Acropora.tab + Acropora.cory + Ac
 #| warning: false
 summary(model_selection)$bestmodel
 
-lm_Biomass_Piscivores_GBR = lm(Biomass_Piscivores ~ Acropora.tab + Acropora.arb + Montipora + Pocillopora, CF_smry_GBR_t)
+lm_Richness_Corallivores_GBR = lm(Richness_Corallivores ~
+                                    Acropora.cory + 
+                                    Acropora.arb + 
+                                    Montipora, CF_smry_GBR_t)
+summary(lm_Richness_Corallivores_GBR)
+
+shapiro.test(resid(lm_Richness_Corallivores_GBR))
+par(mfrow=c(1,2))
+qqnorm(resid(lm_Richness_Corallivores_GBR))
+qqline(resid(lm_Richness_Corallivores_GBR), col = "red")
+hist(resid(lm_Richness_Corallivores_GBR), breaks = 20, main = NULL)
+
+#' 
+#' #### GBR-LM5: biomass of corallivores
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+lm(Biomass_Corallivores ~ 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora + 
+     Porites.mas + 
+     Rugosity, CF_smry_GBR_t) %>% vif()
+
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+#| output: false
+model_selection = glmulti(Biomass_Corallivores ~
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora + 
+                            Porites.mas+ 
+                            Rugosity,
+                          data = CF_smry_GBR_t,
+                          level = 1,               # only main effects
+                          method = "h",            # heuristic search
+                          crit = "aicc",           # use AICc!
+                          fitfunction = lm)        # for lm models
+
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+#| fig-width: 8
+#| fig-height: 4
+#| fig-align: "center"
+#| warning: false
+summary(model_selection)$bestmodel
+
+lm_Biomass_Corallivores_GBR = lm(Biomass_Corallivores ~ 
+                                   Acropora.tab + 
+                                   Acropora.arb, CF_smry_GBR_t)
+summary(lm_Biomass_Corallivores_GBR)
+shapiro.test(resid(lm_Biomass_Corallivores_GBR))
+par(mfrow=c(1,2))
+qqnorm(resid(lm_Biomass_Corallivores_GBR))
+qqline(resid(lm_Biomass_Corallivores_GBR), col = "red")
+hist(resid(lm_Biomass_Corallivores_GBR), breaks = 20, main = NULL)
+
+#' 
+#' #### GBR-LM6: biomass of piscivores
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+lm(Biomass_Piscivores ~ 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora + 
+     Porites.mas + 
+     Rugosity, CF_smry_GBR_t) %>% vif()
+
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+#| output: false
+model_selection = glmulti(Biomass_Piscivores ~ 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora +
+                            Porites.mas+
+                            Rugosity,
+                          data = CF_smry_GBR_t,
+                          level = 1,               # only main effects
+                          method = "h",            # heuristic search
+                          crit = "aicc",           # use AICc!
+                          fitfunction = lm)        # for lm models
+
+#' 
+## ---------------------------------------------------------------------------------------------------------------------------------------------------
+#| fig-width: 8
+#| fig-height: 4
+#| fig-align: "center"
+#| warning: false
+summary(model_selection)$bestmodel
+
+lm_Biomass_Piscivores_GBR = lm(Biomass_Piscivores ~ 
+                                 Acropora.tab + 
+                                 Acropora.arb + 
+                                 Montipora + 
+                                 Pocillopora, CF_smry_GBR_t)
 summary(lm_Biomass_Piscivores_GBR)
 shapiro.test(resid(lm_Biomass_Piscivores_GBR))
 
@@ -717,13 +837,25 @@ hist(resid(lm_Biomass_Piscivores_GBR), breaks = 20, main = NULL)
 #' #### GBR-LM7: rugosity
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Rugosity ~ Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora +Porites.mas,CF_smry_GBR_t) %>% vif()
+lm(Rugosity ~ 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora +
+     Porites.mas,
+   CF_smry_GBR_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Rugosity ~ Acropora.tab + Acropora.cory + Acropora.arb + 
-                            Montipora + Pocillopora +Porites.mas,
+model_selection = glmulti(Rugosity ~ 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora +
+                            Porites.mas,
                           data = CF_smry_GBR_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -747,7 +879,7 @@ qqline(resid(lm_rugosity_GBR), col = "red")
 hist(resid(lm_rugosity_GBR), breaks = 20, main = NULL)
 
 #' 
-#' ### Optimizing LMs among TS sites
+#' ### Drivers of corallivory among TS sites
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
@@ -759,13 +891,31 @@ CF_smry_TS_t$Event_duration = as.vector(scale((CF_smry_TS$Event_duration)^(1/4))
 #' #### TS-LM1: total corallivory
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Total_corallivory ~  Feeding_intensity + Event_duration + 
-     Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + 
-     Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora +Porites.mas+ Rugosity, CF_smry_TS_t) %>% vif()
+lm(Total_corallivory ~  
+     Feeding_intensity + 
+     Event_duration + 
+     Biomass_Corallivores + 
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora +
+     Porites.mas+ 
+     Rugosity, CF_smry_TS_t) %>% vif()
 # Remove Pocillopora
-lm(Total_corallivory ~  Feeding_intensity + Event_duration + 
-     Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + 
-     Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Porites.mas+
+lm(Total_corallivory ~  
+     Feeding_intensity + 
+     Event_duration + 
+     Biomass_Corallivores +
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Porites.mas+
      Rugosity, CF_smry_TS_t) %>% vif()
 # Remove tabular Acropora
 lm(Total_corallivory ~  Feeding_intensity + Event_duration + 
@@ -776,7 +926,17 @@ lm(Total_corallivory ~  Feeding_intensity + Event_duration +
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Total_corallivory ~  Feeding_intensity + Event_duration + Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.cory + Acropora.arb + Montipora + Porites.mas+ Rugosity, 
+model_selection = glmulti(Total_corallivory ~  
+                            Feeding_intensity + 
+                            Event_duration +
+                            Biomass_Corallivores +
+                            Richness_Corallivores +
+                            Biomass_Piscivores + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Porites.mas+ 
+                            Rugosity, 
                           data = CF_smry_TS_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -803,18 +963,42 @@ hist(resid(lm_total_corallivory_TS), breaks = 20, main = NULL)
 #' #### TS-LM2: feeding intensity
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Feeding_intensity ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + 
-     Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas+
+lm(Feeding_intensity ~ 
+     Biomass_Corallivores + 
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora+ 
+     Porites.mas+
      Rugosity, CF_smry_TS_t) %>% vif()
 # remove Pocillopora
-lm(Feeding_intensity ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + 
-     Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Porites.mas+
+lm(Feeding_intensity ~ 
+     Biomass_Corallivores + 
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Porites.mas+
      Rugosity, CF_smry_TS_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Feeding_intensity ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Porites.mas+ Rugosity, 
+model_selection = glmulti(Feeding_intensity ~
+                            Biomass_Corallivores +
+                            Richness_Corallivores +
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Porites.mas+ 
+                            Rugosity, 
                           data = CF_smry_TS_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -841,15 +1025,42 @@ hist(resid(lm_Feeding_intensity_TS), breaks = 20, main = NULL)
 #' #### TS-LM3: event duration
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Event_duration ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas+ Rugosity, CF_smry_TS_t) %>% vif()
+lm(Event_duration ~ 
+     Biomass_Corallivores + 
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora+ 
+     Porites.mas+ 
+     Rugosity, CF_smry_TS_t) %>% vif()
 # Remove Pocillopora
-lm(Event_duration ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Porites.mas+
+lm(Event_duration ~ 
+     Biomass_Corallivores + 
+     Richness_Corallivores + 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Porites.mas+
      Rugosity, CF_smry_TS_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Event_duration ~ Biomass_Corallivores + Richness_Corallivores + Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Porites.mas+ Rugosity, 
+model_selection = glmulti(Event_duration ~ 
+                            Biomass_Corallivores +
+                            Richness_Corallivores +
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Porites.mas+ 
+                            Rugosity, 
                           data = CF_smry_TS_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -864,7 +1075,9 @@ model_selection = glmulti(Event_duration ~ Biomass_Corallivores + Richness_Coral
 #| warning: false
 summary(model_selection)$bestmodel
 
-lm_Event_duration_TS = lm(Event_duration ~ Biomass_Piscivores + Acropora.tab, CF_smry_TS_t)
+lm_Event_duration_TS = lm(Event_duration ~ 
+                            Biomass_Piscivores + 
+                            Acropora.tab, CF_smry_TS_t)
 lm_Event_duration_TS %>% summary()
 shapiro.test(resid(lm_Event_duration_TS))
 par(mfrow=c(1,2))
@@ -876,12 +1089,28 @@ hist(resid(lm_Event_duration_TS), breaks = 20, main = NULL)
 #' #### TS-LM4: richness of corallivores
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Richness_Corallivores ~ Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas+ Rugosity, CF_smry_TS_t) %>% vif()
+lm(Richness_Corallivores ~ 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora+ 
+     Porites.mas+ 
+     Rugosity, CF_smry_TS_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Richness_Corallivores ~ Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas+ Rugosity, 
+model_selection = glmulti(Richness_Corallivores ~
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora+ 
+                            Porites.mas+ 
+                            Rugosity, 
                           data = CF_smry_TS_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -896,7 +1125,10 @@ model_selection = glmulti(Richness_Corallivores ~ Biomass_Piscivores + Acropora.
 #| warning: false
 summary(model_selection)$bestmodel
 
-lm_Richness_Corallivores_TS = lm(Richness_Corallivores ~ Acropora.tab + Pocillopora + Porites.mas, CF_smry_TS_t)
+lm_Richness_Corallivores_TS = lm(Richness_Corallivores ~
+                                   Acropora.tab + 
+                                   Pocillopora + 
+                                   Porites.mas, CF_smry_TS_t)
 lm_Richness_Corallivores_TS %>% summary()
 shapiro.test(resid(lm_Richness_Corallivores_TS))
 par(mfrow=c(1,2))
@@ -908,12 +1140,28 @@ hist(resid(lm_Richness_Corallivores_TS), breaks = 20, main = NULL)
 #' #### TS-LM5: biomass of corallivores
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Biomass_Corallivores ~ Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas+ Rugosity, CF_smry_TS_t) %>% vif()
+lm(Biomass_Corallivores ~ 
+     Biomass_Piscivores + 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora+ 
+     Porites.mas+ 
+     Rugosity, CF_smry_TS_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Biomass_Corallivores ~ Biomass_Piscivores + Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas+ Rugosity, 
+model_selection = glmulti(Biomass_Corallivores ~
+                            Biomass_Piscivores + 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora+ 
+                            Porites.mas+ 
+                            Rugosity, 
                           data = CF_smry_TS_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -928,7 +1176,10 @@ model_selection = glmulti(Biomass_Corallivores ~ Biomass_Piscivores + Acropora.t
 #| warning: false
 summary(model_selection)$bestmodel
 
-lm_Biomass_Corallivores_TS = lm(Biomass_Corallivores ~ Acropora.arb + Montipora + Pocillopora, CF_smry_TS_t)
+lm_Biomass_Corallivores_TS = lm(Biomass_Corallivores ~ 
+                                  Acropora.arb + 
+                                  Montipora + 
+                                  Pocillopora, CF_smry_TS_t)
 lm_Biomass_Corallivores_TS %>% summary()
 shapiro.test(resid(lm_Biomass_Corallivores_TS))
 par(mfrow=c(1,2))
@@ -940,12 +1191,26 @@ hist(resid(lm_Biomass_Corallivores_TS), breaks = 20, main = NULL)
 #' #### TS-LM6: biomass of piscivores
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Biomass_Piscivores ~ Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas+ Rugosity, CF_smry_TS_t) %>% vif()
+lm(Biomass_Piscivores ~ 
+     Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora+ 
+     Porites.mas+ 
+     Rugosity, CF_smry_TS_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Biomass_Piscivores ~ Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas+ Rugosity, 
+model_selection = glmulti(Biomass_Piscivores ~ 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora+ 
+                            Porites.mas+ 
+                            Rugosity, 
                           data = CF_smry_TS_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
@@ -972,13 +1237,23 @@ hist(resid(lm_Biomass_Piscivores_TS), breaks = 20, main = NULL)
 #' #### TS-LM7: rugosity
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
-lm(Rugosity ~ Acropora.tab + Acropora.cory + Acropora.arb + Montipora + Pocillopora+ Porites.mas, CF_smry_TS_t) %>% vif()
+lm(Rugosity ~ Acropora.tab + 
+     Acropora.cory + 
+     Acropora.arb + 
+     Montipora + 
+     Pocillopora+ 
+     Porites.mas, CF_smry_TS_t) %>% vif()
 
 #' 
 ## ---------------------------------------------------------------------------------------------------------------------------------------------------
 #| output: false
-model_selection = glmulti(Rugosity ~ Acropora.tab + Acropora.cory + Acropora.arb + 
-                            Montipora + Pocillopora+ Porites.mas, 
+model_selection = glmulti(Rugosity ~ 
+                            Acropora.tab + 
+                            Acropora.cory + 
+                            Acropora.arb + 
+                            Montipora + 
+                            Pocillopora+ 
+                            Porites.mas, 
                           data = CF_smry_TS_t,
                           level = 1,               # only main effects
                           method = "h",            # heuristic search
