@@ -1,8 +1,8 @@
-# Data from: Corallivore assemblage, feeding behaviour, and cover of *Acropora* corals drive fish corallivory on tropical reefs
+# Data from: Corallivore assemblage, feeding behavior, and cover of *Acropora* corals drive fish corallivory on tropical reefs
 
 ------------------------------------------------------------------------
 
-This README.md file was generated on 14 Apr 2026 by **Tsai-Hsuan Tony Hsu** ([tsai-hsuan.hsu\@sydney.edu.au](mailto:tsai-hsuan.hsu@sydney.edu.au) / [tonytsaihsuanhsu\@gmail.com](mailto:tonytsaihsuanhsu@gmail.com)). Render [CorallivoryDrivers_Hsu_et_al_2026.qmd](CorallivoryDrivers_Hsu_et_al_2026.qmd) to generate HTML and extract R code.
+This README.md file was generated on 08 Jul 2026 by **Tsai-Hsuan Tony Hsu** [tony.tsaihsuan.hsu\@gmail.com](mailto:tony.tsaihsuan.hsu@gmail.com)). Render [CorallivoryDrivers_Hsu_et_al_2026.qmd](CorallivoryDrivers_Hsu_et_al_2026.qmd) to generate HTML and extract R code.
 
 1.  **Author Information**
 
@@ -18,7 +18,7 @@ This README.md file was generated on 14 Apr 2026 by **Tsai-Hsuan Tony Hsu** ([ts
 
 4.  **Funding sources that supported the collection of the data**: This research was supported by the Reef Restoration and Adaptation Program, which is funded by a partnership between the Australian Government, Reef Trust, the Great Barrier Reef Foundation, and The Australian Institute of Marine Science, and by the Taiwan–University of Sydney Jointly Funded PhD Scholarship (USYD and Ministry of Education, Taiwan) awarded to T.-H. T. Hsu. The research was conducted under the Great Barrier Reef Marine Park permit G21/44774.1.
 
-5.  **Recommended citation for this dataset:** Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (2026) Data from “Corallivore assemblage, feeding behaviour, and *Acropora* corals drive fish corallivory on tropical reefs.”. [Data set]. Sydney eScholarship. [doi](doi)
+5.  **Recommended citation for this dataset:** Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (2026) Data from “Corallivore assemblage, feeding behavior, and *Acropora* corals drive fish corallivory on tropical reefs.”. [Data set]. Sydney eScholarship. [doi](doi)
 
 [Data and R script are also available through the GitHub repository <https://github.com/THTonyHsu/Drivers-of-corallivory.git> in order to replicate our analyses]
 
@@ -76,35 +76,35 @@ A detailed description of data acquisition and processing can be found in the pu
 
 4.  Variable List
 
-    -   Column A - taxa: benthic taxa
-    -   Column B - MFG: morpho-functional group
+    - Column A - taxa: benthic taxa
+    - Column B - MFG: morpho-functional group
 
 5.  Abbreviations used
 
-    -   for MFG:
-        -   Abiotic: abiotic substrate
-        -   Acro.arb: arborescent *Acropora*
-        -   Acro.bran: other branching *Acropora*
-        -   Acro.cory: corymbose *Acropora*
-        -   Acro.tab: tabular *Acropora*
-        -   alg.ca: calcareous algae
-        -   alg.oth: other algae
-        -   CCA: crustise coralline algae
-        -   Foliose.lett: lettuce-like foliose hard coral
-        -   Foliose.plat: plate-like foliose hard coral
-        -   Freeliving: free living hard coral (e.g., Fugiidae)
-        -   HC.other.bran: other branching hard coral
-        -   HC.other.mas: other massive hard coral
-        -   oth.ben: other benthos
-        -   oth.mob: other mobile organisms
-        -   Porites.mas: massive *Porites*
-        -   SC.bran: branching soft coral
-        -   SC.fan: fan-shaped soft coral
-        -   SC.mas: massive soft coral
-        -   SC.oth: other soft coral
-        -   SC.whip: whip-like soft coral
-        -   TurfL turf algae
-        -   UnID: unidentifiable
+    - for MFG:
+      - Abiotic: abiotic substrate
+      - Acro.arb: arborescent *Acropora*
+      - Acro.bran: other branching *Acropora*
+      - Acro.cory: corymbose *Acropora*
+      - Acro.tab: tabular *Acropora*
+      - alg.ca: calcareous algae
+      - alg.oth: other algae
+      - CCA: crustise coralline algae
+      - Foliose.lett: lettuce-like foliose hard coral
+      - Foliose.plat: plate-like foliose hard coral
+      - Freeliving: free living hard coral (e.g., Fugiidae)
+      - HC.other.bran: other branching hard coral
+      - HC.other.mas: other massive hard coral
+      - oth.ben: other benthos
+      - oth.mob: other mobile organisms
+      - Porites.mas: massive *Porites*
+      - SC.bran: branching soft coral
+      - SC.fan: fan-shaped soft coral
+      - SC.mas: massive soft coral
+      - SC.oth: other soft coral
+      - SC.whip: whip-like soft coral
+      - TurfL turf algae
+      - UnID: unidentifiable
 
 ##### **File 2: Hsuetal_dataset_benthic_taxa.csv**
 
@@ -118,28 +118,28 @@ A detailed description of data acquisition and processing can be found in the pu
 
 4.  Variable List
 
-    -   Column A - Region
-    -   Column B - Reef
-    -   Column C - Habitat
-    -   Column D - Position
-    -   Column E - Site
-    -   Column F - Plot
-    -   Column G - Site_Plot
-    -   Column H-CA: 72 benthic taxa
+    - Column A - Region
+    - Column B - Reef
+    - Column C - Habitat
+    - Column D - Position
+    - Column E - Site
+    - Column F - Plot
+    - Column G - Site_Plot
+    - Column H-CA: 72 benthic taxa
 
 5.  Abbreviations used
 
-    -   for Region:
-        -   GBR: Great Barrier Reef
-        -   TS: Torres Strait
-    -   for Reef:
-        -   CBHE: Heron Island, southern GBR
-        -   OCDA: Davies Reef, central GBR
-        -   ONLI: Lizard Island, northern GBR
-        -   TSMA: Masig Island, TS
-    -   for Habitat:
-        -   BA: Back-reef
-        -   FR: Fore-reef
+    - for Region:
+      - GBR: Great Barrier Reef
+      - TS: Torres Strait
+    - for Reef:
+      - CBHE: Heron Island, southern GBR
+      - OCDA: Davies Reef, central GBR
+      - ONLI: Lizard Island, northern GBR
+      - TSMA: Masig Island, TS
+    - for Habitat:
+      - BA: Back-reef
+      - FR: Fore-reef
 
 ##### **File 3: Hsuetal_dataset_Complexity.csv**
 
@@ -153,23 +153,23 @@ A detailed description of data acquisition and processing can be found in the pu
 
 4.  Variable List
 
-    -   Column A - Reef
-    -   Column B - Habitat
-    -   Column C - Position
-    -   Column D - Site
-    -   Column E - Plot
-    -   Column F - Rugosity_plane: the ratio of 3D surface area over the 2D surface area projected onto the plane of best fit
+    - Column A - Reef
+    - Column B - Habitat
+    - Column C - Position
+    - Column D - Site
+    - Column E - Plot
+    - Column F - Rugosity_plane: the ratio of 3D surface area over the 2D surface area projected onto the plane of best fit
 
 5.  Abbreviations used
 
-    -   for Reef:
-        -   CBHE: Heron Island, southern GBR
-        -   OCDA: Davies Reef, central GBR
-        -   ONLI: Lizard Island, northern GBR
-        -   TSMA: Masig Island, TS
-    -   for Habitat:
-        -   BA: Back-reef
-        -   FR: Fore-reef
+    - for Reef:
+      - CBHE: Heron Island, southern GBR
+      - OCDA: Davies Reef, central GBR
+      - ONLI: Lizard Island, northern GBR
+      - TSMA: Masig Island, TS
+    - for Habitat:
+      - BA: Back-reef
+      - FR: Fore-reef
 
 ##### **File 4: Hsuetal_dataset_Corallivory.csv**
 
@@ -183,35 +183,35 @@ A detailed description of data acquisition and processing can be found in the pu
 
 4.  Variable List
 
-    -   Column A - Reef
-    -   Column B - Habitat
-    -   Column C - Position
-    -   Column D - Site
-    -   Column E - Plot
-    -   Column F - Time
-    -   Column G - SN: Genus_species
-    -   Column H - Family
-    -   Column I - Genus
-    -   Column J - Species
-    -   Column K - Number
-    -   Column L - Activity: either Passing or Feeding
-    -   Column M - TL: total length (cm)
-    -   Column N - Comment
-    -   Column O - ID: ID to distinguish fish individulas for each species at each plot
+    - Column A - Reef
+    - Column B - Habitat
+    - Column C - Position
+    - Column D - Site
+    - Column E - Plot
+    - Column F - Time
+    - Column G - SN: Genus_species
+    - Column H - Family
+    - Column I - Genus
+    - Column J - Species
+    - Column K - Number
+    - Column L - Activity: either Passing or Feeding
+    - Column M - TL: total length (cm)
+    - Column N - Comment
+    - Column O - ID: ID to distinguish fish individulas for each species at each plot
 
 5.  Abbreviations used
 
-    -   for Reef:
-        -   CBHE: Heron Island, southern GBR
-        -   OCDA: Davies Reef, central GBR
-        -   ONLI: Lizard Island, northern GBR
-        -   TSMA: Masig Island, TS
-    -   for Habitat:
-        -   BA: Back-reef
-        -   FR: Fore-reef
-    -   for Comment:
-        -   time in: the time each individual entered the field of view
-        -   time out: the time each individual left the field of view
+    - for Reef:
+      - CBHE: Heron Island, southern GBR
+      - OCDA: Davies Reef, central GBR
+      - ONLI: Lizard Island, northern GBR
+      - TSMA: Masig Island, TS
+    - for Habitat:
+      - BA: Back-reef
+      - FR: Fore-reef
+    - for Comment:
+      - time in: the time each individual entered the field of view
+      - time out: the time each individual left the field of view
 
 ##### **File 5: Hsuetal_dataset_FishUVC.csv**
 
@@ -223,33 +223,33 @@ A detailed description of data acquisition and processing can be found in the pu
 
 4.  Variable List
 
-    -   Column A - Reef
-    -   Column B - Habitat
-    -   Column C - Position
-    -   Column D - Site
-    -   Column E - Family
-    -   Column F - Genus
-    -   Column G - Species
-    -   Column H - Valid_as: scientific name
-    -   Column I - Trophic_group
-    -   Column J - Feeding_group
-    -   Column K - TR: transect
-    -   Column L - Density (individuals per 100 m<sup>-2<sup>)
-    -   Column M - Biomass (g per 100 m<sup>-2<sup>)
+    - Column A - Reef
+    - Column B - Habitat
+    - Column C - Position
+    - Column D - Site
+    - Column E - Family
+    - Column F - Genus
+    - Column G - Species
+    - Column H - Valid_as: scientific name
+    - Column I - Trophic_group
+    - Column J - Feeding_group
+    - Column K - TR: transect
+    - Column L - Density (individuals per 100 m<sup>-2<sup>)
+    - Column M - Biomass (g per 100 m<sup>-2<sup>)
 
 5.  Abbreviations used
 
-    -   for Reef:
-        -   CBHE: Heron Island, southern GBR
-        -   OCDA: Davies Reef, central GBR
-        -   ONLI: Lizard Island, northern GBR
-        -   TSMA: Masig Island, TS
-    -   for Habitat:
-        -   BA: Back-reef
-        -   FR: Fore-reef
-    -   for TR:
-        -   T1: Transect 1, spaning plots 1 & 2
-        -   T2: Transect 2, spaning plots 3 & 4
+    - for Reef:
+      - CBHE: Heron Island, southern GBR
+      - OCDA: Davies Reef, central GBR
+      - ONLI: Lizard Island, northern GBR
+      - TSMA: Masig Island, TS
+    - for Habitat:
+      - BA: Back-reef
+      - FR: Fore-reef
+    - for TR:
+      - T1: Transect 1, spaning plots 1 & 2
+      - T2: Transect 2, spaning plots 3 & 4
 
 ##### **File 6: Hsuetal_dataset_Obligate_corallivore.csv**
 
@@ -263,11 +263,11 @@ A detailed description of data acquisition and processing can be found in the pu
 
 4.  Variable List
 
-    -   Column A - Family
-    -   Column B - Genus
-    -   Column C - Species
-    -   Column D - SN: Genus_species
-    -   Column E - Vaild_as: scientific name
+    - Column A - Family
+    - Column B - Genus
+    - Column C - Species
+    - Column D - SN: Genus_species
+    - Column E - Vaild_as: scientific name
 
 ##### **File 7: Hsuetal_dataset_prey_MFG.csv**
 
@@ -279,13 +279,13 @@ A detailed description of data acquisition and processing can be found in the pu
 
 4.  Variable List
 
-    -   Column A - Prey: coral preys form which corallivores took bites
-    -   Column B - MFG: morpho-functional group
+    - Column A - Prey: coral preys form which corallivores took bites
+    - Column B - MFG: morpho-functional group
 
 5.  Abbreviations used
 
-    -   for MFG:
-        -   Acropora.tab: Tabular *Acropora*
-        -   Encrusting: Encrusting hard coral
-        -   Acropora.Branching.Other
-        -   Massive: Massive hard coral
+    - for MFG:
+      - Acropora.tab: Tabular *Acropora*
+      - Encrusting: Encrusting hard coral
+      - Acropora.Branching.Other
+      - Massive: Massive hard coral

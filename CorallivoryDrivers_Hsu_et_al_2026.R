@@ -1,5 +1,5 @@
 #' ---
-#' title: "Hsu et al. (2026): Corallivore assemblage, feeding behaviour, and cover of Acropora corals drive fish corallivory on tropical reefs"
+#' title: "Hsu et al. (2026): Corallivore assemblage, feeding behavior, and cover of Acropora corals drive fish corallivory on tropical reefs"
 #' author:
 #'   - name: Tsai-Hsuan Tony Hsu
 #'     orcid: 0000-0002-9362-9769
@@ -19,9 +19,9 @@
 #' 
 #' Quarto document to replicate analyses in Hsu et al. (2026). If used in full or in part, please cite the data and the original publication:
 #' 
-#' **Publication**: Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (in press) Corallivore assemblage, feeding behaviour, and *Acropora* corals drive fish corallivory on tropical reefs. *Ecosphere*. [doi](doi)
+#' **Publication**: Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (in press) Corallivore assemblage, feeding behavior, and *Acropora* corals drive fish corallivory on tropical reefs. *Ecosphere*.
 #' 
-#' **Data**: Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (2026) Data from "Corallivore assemblage, feeding behaviour, and *Acropora* corals drive fish corallivory on tropical reefs.". \[Data set\]. Sydney eScholarship, [doi](doi)
+#' **Data**: Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (2026) Data from "Corallivore assemblage, feeding behavior, and *Acropora* corals drive fish corallivory on tropical reefs.". \[Data set\]. Sydney eScholarship, [doi](doi)
 #' 
 #' Data and **R script** also available on [GitHub](https://github.com/THTonyHsu/Drivers-of-corallivory.git)
 #' 
@@ -304,7 +304,7 @@ sd(CF_smry$Event_duration)/sqrt(nrow(CF_smry)) # SE of event duration: 0.03
 unique(df_cor$SN) # 12 species
 
 #' 
-#' ### Spatial variations in total corallivory, corallivore behaviour, and corallivore assemblage
+#' ### Spatial variations in total corallivory, corallivore behavior, and corallivore assemblage
 #' 
 #' #### Total corallivory
 #' 
