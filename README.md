@@ -2,7 +2,7 @@
 
 ------------------------------------------------------------------------
 
-This README.md file was generated on 08 Jul 2026 by **Tsai-Hsuan Tony Hsu** [tony.tsaihsuan.hsu\@gmail.com](mailto:tony.tsaihsuan.hsu@gmail.com)). Render [CorallivoryDrivers_Hsu_et_al_2026.qmd](CorallivoryDrivers_Hsu_et_al_2026.qmd) to generate HTML and extract R code.
+This README.md file was generated on 09 Jul 2026 by **Tsai-Hsuan Tony Hsu** [tony.tsaihsuan.hsu\@gmail.com](mailto:tony.tsaihsuan.hsu@gmail.com)). Render [CorallivoryDrivers_Hsu_et_al_2026.qmd](CorallivoryDrivers_Hsu_et_al_2026.qmd) to generate HTML and extract R code.
 
 1.  **Author Information**
 
@@ -18,7 +18,7 @@ This README.md file was generated on 08 Jul 2026 by **Tsai-Hsuan Tony Hsu** [ton
 
 4.  **Funding sources that supported the collection of the data**: This research was supported by the Reef Restoration and Adaptation Program, which is funded by a partnership between the Australian Government, Reef Trust, the Great Barrier Reef Foundation, and The Australian Institute of Marine Science, and by the Taiwan–University of Sydney Jointly Funded PhD Scholarship (USYD and Ministry of Education, Taiwan) awarded to T.-H. T. Hsu. The research was conducted under the Great Barrier Reef Marine Park permit G21/44774.1.
 
-5.  **Recommended citation for this dataset:** Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (2026) Data from “Corallivore assemblage, feeding behavior, and *Acropora* corals drive fish corallivory on tropical reefs.”. [Data set]. Sydney eScholarship. [doi](doi)
+5.  **Recommended citation for this dataset:** Hsu T-H.T, Hoey A.S, Ferrari R, Toor M, Gordon S, Remmers T, Smallhorn-West J, Piccaluga A, Figueira W.F (2026) Data from “Corallivore assemblage, feeding behavior, and *Acropora* corals drive fish corallivory on tropical reefs.”. [Data set]. Sydney eScholarship. <https://doi.org/10.25910/hevd-0g28>
 
 [Data and R script are also available through the GitHub repository <https://github.com/THTonyHsu/Drivers-of-corallivory.git> in order to replicate our analyses]
 
