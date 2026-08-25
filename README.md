@@ -1,4 +1,4 @@
-# Data from: Corallivore assemblage, feeding behavior, and cover of *Acropora* corals drive fish corallivory on tropical reefs
+# Data from: Corallivore assemblage, feeding behaviour, and cover of *Acropora* corals drive fish corallivory on tropical reefs
 
 ------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ This README.md file was generated on 09 Jul 2026 by **Tsai-Hsuan Tony Hsu** [ton
 
 ### Methodological information
 
-A detailed description of data acquisition and processing can be found in the published manuscript in the *Ecosphere* (doixx).
+A detailed description of data acquisition and processing can be found in the published manuscript in the *Ecosphere* (in press).
 
 ### Description of data sturcture
 
