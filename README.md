@@ -1,4 +1,4 @@
-# Data from: Corallivore assemblage, feeding behavior, and cover of *Acropora* corals drive fish corallivory on tropical reefs
+# Data from: Corallivore assemblage, feeding behaviour, and cover of *Acropora* corals drive fish corallivory on tropical reefs
 
 ------------------------------------------------------------------------
 
