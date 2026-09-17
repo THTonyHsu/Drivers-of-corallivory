@@ -24,7 +24,7 @@ This README.md file was generated on 09 Jul 2026 by **Tsai-Hsuan Tony Hsu** [ton
 
 ### Methodological information
 
-A detailed description of data acquisition and processing can be found in the published manuscript in the *Ecosphere* (doixx).
+A detailed description of data acquisition and processing can be found in the published manuscript in the **Hsu et al. (2026) *Ecosphere*** <https://doi.org/10.1002/ecs2.70775>.
 
 ### Description of data sturcture
 
